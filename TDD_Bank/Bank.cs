@@ -15,57 +15,19 @@ namespace TDD_Bank
         //TODO : Make Checking
         //TODO : Make Savings
 
-        private string _owner;
-        private double _balance;
+        private string _bankName;
 
-        public string Owner
+        public string Name
         {
             get
             {
-                return _owner;
-            }
-            set
-            {
-                _owner = value;
+                return _bankName;
             }
         }
 
-        public double Balance
+        public Bank(string name)
         {
-            get
-            {
-                return _balance;
-            }
-            set
-            {
-                _balance = value;
-            }
-        }
-
-        public Bank() { }
-
-        public Bank(string owner, double balance)
-        {
-            _owner = owner;
-            _balance = balance;
-        }
-
-        public bool Deposit(double amount)
-        {
-            Balance += amount;
-
-            return true;
-        }
-
-        public bool Withdraw(double amount)
-        {
-            if(Balance - amount > 0)
-            {
-                Balance -= amount;
-                return true;
-            }
-
-            return false;
+            _bankName = name;
         }
     }
 }

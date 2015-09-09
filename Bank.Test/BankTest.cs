@@ -20,18 +20,14 @@ namespace BankTest
         [ClassInitialize]
         public static void Setup(TestContext context)
         {
-            _myBankAccount = new Bank("Matthew Mills", INITIAL_BALANCE);
+            _myBankAccount = new Bank("Bank of Interest");
         }
 
         public BankTest()
         {
-            Bank bank = new Bank();
-            Assert.IsNotNull(bank);
-
-            Bank bank2 = new Bank("Matthew Mills", 500.25);
-            Assert.IsNotNull(bank);
-            Assert.AreEqual(bank2.Owner, "Matthew Mills");
-            Assert.AreEqual(bank2.Balance, 500.25);
+            Bank bank2 = new Bank("Bank of Interest");
+            Assert.IsNotNull(bank2);
+            Assert.AreEqual(bank2.Name, "Bank of Interest");
         }
 
         private TestContext testContextInstance;
@@ -73,41 +69,5 @@ namespace BankTest
         // public void MyTestCleanup() { }
         //
         #endregion
-
-        [TestMethod]
-        public void GetBalanceTest()
-        {
-            Assert.AreEqual(INITIAL_BALANCE, _myBankAccount.Balance);
-        }
-
-        [TestMethod]
-        public void WithdrawTest()
-        {
-            const double AMOUNT_TO_WITHDRAW = 245.23;
-            double initialAmount = _myBankAccount.Balance;
-            _myBankAccount.Withdraw(AMOUNT_TO_WITHDRAW);
-
-            Assert.AreEqual(initialAmount - AMOUNT_TO_WITHDRAW, _myBankAccount.Balance);
-        }
-
-        [TestMethod]
-        public void DepositTest()
-        {
-            const double AMOUNT_TO_DEPOSIT = 111.11;
-            double initialAmount = _myBankAccount.Balance;
-            _myBankAccount.Deposit(AMOUNT_TO_DEPOSIT);
-
-            Assert.AreEqual(initialAmount + AMOUNT_TO_DEPOSIT, _myBankAccount.Balance);
-        }
-
-        [TestMethod]
-        public void OverdraftTest()
-        {
-            double balance = _myBankAccount.Balance;
-
-            bool successful = _myBankAccount.Withdraw(balance + .01);
-
-            Assert.IsFalse(successful);
-        }
     }
 }
