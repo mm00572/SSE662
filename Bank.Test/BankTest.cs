@@ -11,6 +11,16 @@ namespace Bank.Test
     [TestClass]
     public class BankTest
     {
+        const double INITIAL_BALANCE = 1000.00;
+
+        private Bank _myBankAccount = null;
+
+        [ClassInitialize]
+        public void Setup()
+        {
+            _myBankAccount = new Bank("Matthew Mills", INITIAL_BALANCE);
+        }
+
         public BankTest()
         {
             Bank bank = new Bank();
@@ -19,7 +29,7 @@ namespace Bank.Test
             Bank bank2 = new Bank("Matthew Mills", 500.25);
             Assert.IsNotNull(bank);
             Assert.AreEqual(bank2.owner, "Matthew Mills");
-            Assert.AreEqual(bank2.balance, 500.25);
+            Assert.AreEqual(bank2.Balance, 500.25);
         }
 
         private TestContext testContextInstance;
@@ -63,11 +73,39 @@ namespace Bank.Test
         #endregion
 
         [TestMethod]
-        public void TestMethod1()
+        public void GetBalanceTest()
         {
-            //
-            // TODO: Add test logic here
-            //
+            Assert.AreEqual(INITIAL_BALANCE, _myBankAccount.Balance);
+        }
+
+        [TestMethod]
+        public void WithdrawTest()
+        {
+            const double AMOUNT_TO_WITHDRAW = 245.23;
+            double initialAmount = _myBankAccount.Balance;
+            _myBankAccount.Withdraw(AMOUNT_TO_WITHDRAW);
+
+            Assert.AreEqual(initialAmount - AMOUNT_TO_WITHDRAW, _myBankAccount.Balance);
+        }
+
+        [TestMethod]
+        public void DepositTest()
+        {
+            const double AMOUNT_TO_DEPOSIT = 111.11;
+            double initialAmount = _myBankAccount.Balance;
+            _myBankAccount.Deposit(AMOUNT_TO_DEPOSIT);
+
+            Assert.AreEqual(initialAmount + AMOUNT_TO_DEPOSIT, _myBankAccount.Balance);
+        }
+
+        [TestMethod]
+        public void OverdraftTest()
+        {
+            double balance = _myBankAccount.Balance;
+
+            bool successful = _myBankAccount.Withdraw(balance + .01);
+
+            Assert.IsFalse(successful);
         }
     }
 }
