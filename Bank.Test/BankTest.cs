@@ -3,7 +3,9 @@ using System.Text;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Bank.Test
+using TDD_Bank;
+
+namespace BankTest
 {
     /// <summary>
     /// Summary description for BankTest
@@ -28,7 +30,7 @@ namespace Bank.Test
 
             Bank bank2 = new Bank("Matthew Mills", 500.25);
             Assert.IsNotNull(bank);
-            Assert.AreEqual(bank2.owner, "Matthew Mills");
+            Assert.AreEqual(bank2.Owner, "Matthew Mills");
             Assert.AreEqual(bank2.Balance, 500.25);
         }
 

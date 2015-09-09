@@ -53,6 +53,12 @@
     <Compile Include="BankTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TDD_Bank\TDD_Bank.csproj">
+      <Project>{3c8b5651-a7b2-4765-bca5-f40dca5dcffe}</Project>
+      <Name>TDD_Bank</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>
