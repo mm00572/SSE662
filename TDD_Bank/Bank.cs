@@ -8,6 +8,13 @@ namespace TDD_Bank
 {
     public class Bank
     {
+        //TODO : Banks control characteristics of Account Holder
+        // -> First Name, Last Name, SSN, Address, PIN Code, Accounts
+        //TODO : Make interface for BankAccount
+        //TODO : Make base class BankAccount
+        //TODO : Make Checking
+        //TODO : Make Savings
+
         private string _owner;
         private double _balance;
 
@@ -45,12 +52,20 @@ namespace TDD_Bank
 
         public bool Deposit(double amount)
         {
-            throw new NotImplementedException();
+            Balance += amount;
+
+            return true;
         }
 
         public bool Withdraw(double amount)
         {
-            throw new NotImplementedException();
+            if(Balance - amount > 0)
+            {
+                Balance -= amount;
+                return true;
+            }
+
+            return false;
         }
     }
 }

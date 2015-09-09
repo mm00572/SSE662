@@ -15,10 +15,10 @@ namespace BankTest
     {
         const double INITIAL_BALANCE = 1000.00;
 
-        private Bank _myBankAccount = null;
+        private static Bank _myBankAccount = null;
 
         [ClassInitialize]
-        public void Setup()
+        public static void Setup(TestContext context)
         {
             _myBankAccount = new Bank("Matthew Mills", INITIAL_BALANCE);
         }
