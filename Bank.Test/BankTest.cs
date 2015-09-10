@@ -69,5 +69,18 @@ namespace BankTest
         // public void MyTestCleanup() { }
         //
         #endregion
+
+        [TestMethod]
+        public void NewAccountTest()
+        {
+            _myBankAccount.NewAccount("P1", 250, .00075, AccountType.Checking);
+            Assert.IsTrue(_myBankAccount.Accounts[0] is CheckingAccount);
+
+            _myBankAccount.NewAccount("P1", 250, .00075, AccountType.Savings);
+            Assert.IsTrue(_myBankAccount.Accounts[1] is SavingsAccount);
+
+            Assert.AreNotEqual(_myBankAccount.Accounts[0].AccountNumber, 
+                _myBankAccount.Accounts[1].AccountNumber);
+        }
     }
 }
