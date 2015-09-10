@@ -82,5 +82,37 @@ namespace BankTest
             Assert.AreNotEqual(_myBankAccount.Accounts[0].AccountNumber, 
                 _myBankAccount.Accounts[1].AccountNumber);
         }
+
+        [TestMethod]
+        public void MakeDepositTest()
+        {
+            long accountNumber = _myBankAccount.Accounts[0].AccountNumber;
+            double amount = 55.65;
+            double initialBalance = _myBankAccount.GetAccount(accountNumber).Balance;
+
+            _myBankAccount.MakeDeposit(accountNumber, amount);
+
+            Assert.AreEqual(initialBalance + amount, _myBankAccount.GetAccount(accountNumber).Balance);
+        }
+
+        [TestMethod]
+        public void MakeWithdrawTest()
+        {
+            long accountNumber = _myBankAccount.Accounts[0].AccountNumber;
+            double amount = 55.65;
+            double initialBalance = _myBankAccount.GetAccount(accountNumber).Balance;
+
+            _myBankAccount.MakeWithdraw(accountNumber, amount);
+
+            Assert.AreEqual(initialBalance - amount, _myBankAccount.GetAccount(accountNumber).Balance);
+        }
+
+        [TestMethod]
+        public void GetAccountTest()
+        {
+            long accountNumber = _myBankAccount.Accounts[0].AccountNumber;
+            BankAccount ba = _myBankAccount.GetAccount(accountNumber);
+            Assert.AreEqual(accountNumber, ba.AccountNumber);
+        }
     }
 }

@@ -71,7 +71,37 @@ namespace TDD_Bank
                     Accounts.Add(new SavingsAccount(owner, balance, interestRate, GetNextAccountNumber()));
                     break;
             }
-        } 
+        }
+        
+        /// <summary>
+        /// Method that allows User to make deposit
+        /// </summary>
+        /// <param name="accountNumber">Account Number to deposit into</param>
+        /// <param name="amount">Amount to deposit</param>
+        public void MakeDeposit(long accountNumber, double amount)
+        {
+            Accounts.Where(account => account.AccountNumber == accountNumber).FirstOrDefault().Deposit(amount);
+        }
+
+        /// <summary>
+        /// Method that allows User to make withdraw
+        /// </summary>
+        /// <param name="accountNumber">Account Number to withdraw from</param>
+        /// <param name="amount">Amount to withdraw</param>
+        public void MakeWithdraw(long accountNumber, double amount)
+        {
+            Accounts.Where(account => account.AccountNumber == accountNumber).FirstOrDefault().Withdraw(amount);
+        }
+
+        /// <summary>
+        /// Gets the account with with the specified account number
+        /// </summary>
+        /// <param name="accountNumber">Account Number of account</param>
+        /// <returns>Bank Account</returns>
+        public BankAccount GetAccount(long accountNumber)
+        {
+            return Accounts.Where(account => account.AccountNumber == accountNumber).FirstOrDefault();
+        }
         #endregion // Public Methods
 
         #region Private Methods
