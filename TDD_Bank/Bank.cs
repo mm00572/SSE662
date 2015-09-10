@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TDD_Bank
 {
     /// <summary>
     /// Bank Class
+    /// Future Potential : Create backend database to track all accounts, etc.
+    ///     Use Reflection to map objects with properties to each dbRow and Entry
     /// </summary>
     public class Bank
     {
